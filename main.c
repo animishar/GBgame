@@ -17,7 +17,6 @@ INT8 gravity = -2;
 UINT8 spritesize = 8;
 BYTE jump_state; 
 BYTE facing = 1;
-UBYTE Debug;
 UINT8 level = 1;
 UBYTE hasKey= 0;
 void performantdelay(UINT8 numloops){
@@ -44,10 +43,6 @@ INT8 canMove(UINT8 x, UINT8 y){
     yi = (y)/8;
     TI = 20*yi+xi;
     map += TI; 
-    if(Debug){
-        printf("%u %u\n",(UINT16)(x),(UINT16)(y));
-        printf("%u %u %u\n",(UINT16)xi,(UINT16)yi,(UINT16)TI);   
-    } 
     if((TI == 74) && (level == 2)){
         hasKey = 1;
         set_bkg_tiles(14,3,1,1,blank[0]);
@@ -188,10 +183,7 @@ void main(){
            NR13_REG = 0x00;
            NR14_REG = 0xC3;	
            }
-       }   
-       if(joypad() & J_B){
-            Debug = 1;
-        }        
+       }         
        performantdelay(3);      
     }
     if(flag !=1)
